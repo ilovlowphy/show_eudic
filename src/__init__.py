@@ -46,7 +46,8 @@ from aqt import mw
 from aqt.reviewer import Reviewer
 from anki.hooks import wrap
 from PyQt5.QtWidgets import QApplication
-from os import popen
+# from os import popen
+import webbrowser
 
 #### Default User Options (config.json) ####
 
@@ -74,13 +75,15 @@ def copyField(fieldToCopy, card):
         fieldName = field['name']
         if(fieldName == fieldToCopy):
             value = card.note()[fieldName]
-            copyTextToClipboard(value)
-            cmd='start /b eudic -w '+str(value)
-            popen(cmd)
+            # copyTextToClipboard(value)
+            # cmd='start /b eudic -w '+str(value)
+            # popen(cmd)
+            url = 'eudic://dict//{word}'
+            webbrowser.open(url.format(word=value))
 
-def wrapped_showQuestion(self):
-    config = mw.addonManager.getConfig(__name__)
-    copyField(config['questionField'], self.card)
+# def wrapped_showQuestion(self):
+#     config = mw.addonManager.getConfig(__name__)
+#     copyField(config['questionField'], self.card)
 
 
 def wrapped_showAnswer(self):
@@ -90,5 +93,5 @@ def wrapped_showAnswer(self):
 
 #### Main ####
 
-Reviewer._showQuestion = wrap(Reviewer._showQuestion, wrapped_showQuestion)
+# Reviewer._showQuestion = wrap(Reviewer._showQuestion, wrapped_showQuestion)
 Reviewer._showAnswer = wrap(Reviewer._showAnswer, wrapped_showAnswer)
