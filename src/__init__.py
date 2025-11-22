@@ -45,7 +45,7 @@
 from aqt import mw
 from aqt.reviewer import Reviewer
 from anki.hooks import wrap
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 from os import popen
 
 #### Default User Options (config.json) ####
