@@ -65,9 +65,9 @@ from os import popen
 
 #### Functions ####
 
-def copyTextToClipboard(text):
-    clipboard = QApplication.clipboard()
-    clipboard.setText(text)
+# def copyTextToClipboard(text):
+#     clipboard = QApplication.clipboard()
+#     clipboard.setText(text)
 
 
 def copyField(fieldToCopy, card):
@@ -75,7 +75,7 @@ def copyField(fieldToCopy, card):
         fieldName = field['name']
         if(fieldName == fieldToCopy):
             value = card.note()[fieldName]
-            copyTextToClipboard(value)
+#             copyTextToClipboard(value)
             cmd='start /b eudic -w '+str(value)
             popen(cmd)
 
